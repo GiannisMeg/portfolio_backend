@@ -1,20 +1,20 @@
 {
-  "development": {
-    "url": "YOUR_URL_HERE",
-    "dialect": "postgres"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
+	"development": {
+		"url": "postgres://oqklzgrs:fE0kN8n3OEFs1hvWr6_rQDQFRSd92CE0@tyke.db.elephantsql.com/oqklzgrs",
+		"dialect": "postgres"
+	},
+	"test": {
+		"username": "root",
+		"password": null,
+		"database": "database_test",
+		"host": "127.0.0.1",
+		"dialect": "mysql"
+	},
+	"production": {
+		"username": "root",
+		"password": null,
+		"database": "database_production",
+		"host": "127.0.0.1",
+		"dialect": "mysql"
+	}
 }
