@@ -10,9 +10,10 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			cocktail.belongsTo(models.user);
 			cocktail.belongsToMany(models.user, {
-				through: "favorite",
+				through: "favorites",
 				foreignKey: "cocktailId",
 			});
+			cocktail.hasMany(models.review);
 		}
 	}
 	cocktail.init(

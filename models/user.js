@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 			user.hasMany(models.comment);
 			user.hasMany(models.review);
 			user.belongsToMany(models.cocktail, {
-				through: "favorite",
+				through: "favorites",
 				foreignKey: "userId",
 			});
 		}
