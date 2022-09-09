@@ -6,11 +6,25 @@ module.exports = {
 			"comments",
 			[
 				{
-					name: "Apple",
+					name: "martini",
 					text: "sgksjgksg  skgjksjgljsdj  jgksjlkjgkdsjg lksjgksjglsdkjg",
 					createdAt: new Date(),
 					updatedAt: new Date(),
 					userId: 2,
+				},
+				{
+					name: "b53",
+					text: "sgksjgksg  skgjksjgljsdj  jgksjlkjgkdsjg lksjgksjglsdkjg",
+					createdAt: new Date(),
+					updatedAt: new Date(),
+					userId: 1,
+				},
+				{
+					name: "paloma",
+					text: "sgksjgksg  skgjksjgljsdj  jgksjlkjgkdsjg lksjgksjglsdkjg",
+					createdAt: new Date(),
+					updatedAt: new Date(),
+					userId: 3,
 				},
 			],
 			{}

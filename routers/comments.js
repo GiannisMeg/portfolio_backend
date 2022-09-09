@@ -12,7 +12,7 @@ const User = require("../models").user;
 router.get("/", async (req, res, next) => {
 	// console.log("req.body", req.body);
 	try {
-		const allUsers = await User.findAll({ includes: [Comment] });
+		const allUsers = await User.findAll({ include: [Comment] });
 
 		if (!allUsers) {
 			res.status(404).send("no users found");
@@ -26,9 +26,11 @@ router.get("/", async (req, res, next) => {
 
 //create Comment
 
-router.post("/create/:userId", async (req, res, next) => {
-	const userId = req.user.userId;
+router.post("/create/", authMiddleware, async (req, res, next) => {
+	// console.log(first)
+	const userId = req.user.id;
 	const { name, text } = req.body;
+	console.log(name);
 	try {
 		const newComment = await Comment.create({
 			name,
