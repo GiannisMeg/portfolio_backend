@@ -41,23 +41,51 @@ module.exports = router;
 
 // post newREVIEW
 
-router.post("/create/:cocktailId", authMiddleware, async (req, res, next) => {
-	// console.log("TAKE IT", req.body);
+router.post("/create/", authMiddleware, async (req, res, next) => {
+	// we get user id from token in this case and not from the params
+	const userId = req.user.id;
+	// req body
+	const { name, glass, instructions, ingredients } = req.body;
+	// console.log(name);
+	try {
+		const newCocktail = await Cocktail.create({
+			name,
+			// category,
+			// alcoholic,
+			glass,
+			instructions,
+			// imageUrl,
+			ingredients,
+			userId,
+		});
 
-	const { textValue, ratingValue } = req.body;
-	const cocktailId = parseInt(req.params.cocktailId);
+		console.log("new cocktail", newCocktail);
+
+		res.json(newCocktail);
+	} catch (err) {
+		next(err);
+	}
+});
+
+//Post Review
+router.post("/create/review", authMiddleware, async (req, res, next) => {
+	// we get user id from token in this case and not from the params
+	const userId = req.user.id;
+	// req body
+	const { text, rating, id } = req.body;
+	// console.log(name);
 	try {
 		const newReview = await Review.create({
-			text: textValue,
-			rating: parseInt(ratingValue),
-			userId: cocktailId,
+			text,
+			rating,
+			cocktailId: id,
+			userId,
 		});
 
 		console.log("new cocktail", newReview);
 
 		res.json(newReview);
-	} catch (e) {
-		console.log(e.message);
-		next(e);
+	} catch (err) {
+		next(err);
 	}
 });
