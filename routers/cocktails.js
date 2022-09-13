@@ -50,11 +50,8 @@ router.post("/create/", authMiddleware, async (req, res, next) => {
 	try {
 		const newCocktail = await Cocktail.create({
 			name,
-			// category,
-			// alcoholic,
 			glass,
 			instructions,
-			// imageUrl,
 			ingredients,
 			userId,
 		});
@@ -68,24 +65,29 @@ router.post("/create/", authMiddleware, async (req, res, next) => {
 });
 
 //Post Review
-router.post("/create/review", authMiddleware, async (req, res, next) => {
-	// we get user id from token in this case and not from the params
-	const userId = req.user.id;
-	// req body
-	const { text, rating, id } = req.body;
-	// console.log(name);
-	try {
-		const newReview = await Review.create({
-			text,
-			rating,
-			cocktailId: id,
-			userId,
-		});
+router.post(
+	"/create/review/:cocktailId",
+	authMiddleware,
+	async (req, res, next) => {
+		// we get user id from token in this case and not from the params
+		const userId = req.user.id;
+		// req body
+		const cocktailId = req.params.id;
+		const { text, rating } = req.body;
+		console.log(cocktailId);
+		try {
+			const newReview = await Review.create({
+				text,
+				rating,
+				cocktailId,
+				userId,
+			});
 
-		console.log("new cocktail", newReview);
+			console.log("new cocktail", newReview);
 
-		res.json(newReview);
-	} catch (err) {
-		next(err);
+			res.json(newReview);
+		} catch (err) {
+			next(err);
+		}
 	}
-});
+);

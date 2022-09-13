@@ -9,16 +9,16 @@ const User = require("../models").user;
 
 //get usersWithComments
 
-router.get("/", async (req, res, next) => {
+router.get("/comments", async (req, res, next) => {
 	// console.log("req.body", req.body);
 	try {
-		const allUsers = await User.findAll({ include: [Comment] });
+		const allComments = await Comment.findAll({ include: [User] });
 
-		if (!allUsers) {
-			res.status(404).send("no users found");
+		if (!allComments) {
+			res.status(404).send("no comments found");
 		}
 
-		res.json(allUsers);
+		res.json(allComments);
 	} catch (err) {
 		next(err);
 	}

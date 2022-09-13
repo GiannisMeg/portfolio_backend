@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 			user.belongsToMany(models.cocktail, {
 				through: "favorites",
 				foreignKey: "userId",
+				as: "userFavorites",
 			});
 		}
 	}
