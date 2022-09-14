@@ -23,6 +23,22 @@ router.get("/", async (req, res, next) => {
 	}
 });
 
+// get all reviews
+router.get("/reviews", async (req, res, next) => {
+	// console.log("req.body", req.body);
+	try {
+		const allReviews = await Review.findAll();
+
+		if (!allReviews) {
+			res.status(404).send("no reviews found");
+		}
+
+		res.json(allReviews);
+	} catch (err) {
+		next(err);
+	}
+});
+
 // Get CocktailById
 router.get("/:id", async (req, res, next) => {
 	const { id } = req.params;
@@ -37,10 +53,7 @@ router.get("/:id", async (req, res, next) => {
 	}
 });
 
-module.exports = router;
-
 // post newREVIEW
-
 router.post("/create/", authMiddleware, async (req, res, next) => {
 	// we get user id from token in this case and not from the params
 	const userId = req.user.id;
@@ -86,3 +99,5 @@ router.post("/create/review/:id", authMiddleware, async (req, res, next) => {
 		next(err);
 	}
 });
+
+module.exports = router;
