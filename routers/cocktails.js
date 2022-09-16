@@ -53,7 +53,7 @@ router.get("/:id", async (req, res, next) => {
 	}
 });
 
-// post newREVIEW
+// post newCocktail
 router.post("/create/", authMiddleware, async (req, res, next) => {
 	// we get user id from token in this case and not from the params
 	const userId = req.user.id;

@@ -24,7 +24,8 @@ app.use(express.json());
 //routes
 app.use("/auth", authRouter);
 app.use("/cocktails", cocktailRouter);
-app.use("/users", commentRouter);
+// app.use("/users", commentRouter);
+app.use("/comment", commentRouter);
 
 //start listening
 app.listen(PORT, () => {
