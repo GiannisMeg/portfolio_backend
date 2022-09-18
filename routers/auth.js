@@ -24,7 +24,7 @@ router.post("/login", async (req, res, next) => {
 
 		const user = await User.findOne({
 			where: { email },
-			include: [Comment, { model: Cocktail, as: "userFavorites" }],
+			include: [Cocktail, Comment, { model: Cocktail, as: "userFavorites" }],
 		}); // { id, email, name, comments: [], favorites: [] }
 
 		if (!user || !bcrypt.compareSync(password, user.password)) {
@@ -63,7 +63,7 @@ router.post("/signup", async (req, res) => {
 		const token = toJWT({ userId: newUser.id });
 
 		const fullUser = await User.findByPk(newUser.id, {
-			include: [Comment, { model: Cocktail, as: "userFavorites" }],
+			include: [Cocktail, Comment, { model: Cocktail, as: "userFavorites" }],
 		});
 
 		res.status(201).json({ token, user: fullUser });
@@ -86,7 +86,7 @@ router.get("/me", authMiddleware, async (req, res) => {
 	delete req.user.dataValues["password"];
 
 	const fullUser = await User.findByPk(req.user.id, {
-		include: [Comment, { model: Cocktail, as: "userFavorites" }],
+		include: [Cocktail, Comment, { model: Cocktail, as: "userFavorites" }],
 	});
 
 	res.status(200).send({ ...fullUser.dataValues });

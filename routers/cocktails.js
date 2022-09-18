@@ -58,18 +58,19 @@ router.post("/create/", authMiddleware, async (req, res, next) => {
 	// we get user id from token in this case and not from the params
 	const userId = req.user.id;
 	// req body
-	const { name, glass, instructions, ingredients } = req.body;
+	const { name, glass, instructions, imageUrl, ingredients } = req.body;
 	// console.log(name);
 	try {
 		const newCocktail = await Cocktail.create({
 			name,
 			glass,
 			instructions,
+			imageUrl,
 			ingredients,
 			userId,
 		});
 
-		console.log("new cocktail", newCocktail);
+		// console.log("new cocktail", newCocktail);
 
 		res.json(newCocktail);
 	} catch (err) {
