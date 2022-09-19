@@ -2,15 +2,6 @@
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		// await queryInterface.addColumn("todoLists", "userId", {
-		// 	type: Sequelize.INTEGER,
-		// 	references: {
-		// 		model: "users",
-		// 		key: "id",
-		// 	},
-		// 	onUpdate: "CASCADE",
-		// 	onDelete: "SET NULL",
-		// });
 		await queryInterface.addColumn("cocktails", "userId", {
 			type: Sequelize.INTEGER,
 			references: {
